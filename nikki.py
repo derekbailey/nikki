@@ -19,7 +19,7 @@ class TestHTMLParser(HTMLParser):
     def handle_data(self, data):
         if self.in_title_tag == True:
             s = 'Result: ' + data
-            print conv_encoding(s, 'utf8', 'cp932')
+            print conv_encoding(s, 'utf8', sys.stdout.encoding)
             self.in_title_tag = False
 
 def conv_encoding(s, fr, to):
@@ -47,6 +47,6 @@ if __name__ == '__main__':
     vals.remove(vals[0])
     text = ' '.join(vals)
 
-    s = conv_encoding(text, 'cp932', 'utf8')
+    s = conv_encoding(text, sys.stdin.encoding, 'utf8')
     main(s)
 
